@@ -1,0 +1,5 @@
+# Ignore tfvars and tfstate so we won't commit credential to github =))
+*.tfvars
+*.tfstate
+.*
+config.tf
