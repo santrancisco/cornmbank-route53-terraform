@@ -1,4 +1,4 @@
-# How to
+# What is this?
 
 This is my terraform code to provision/config route53 for my cornmbank.com site. It's my playground to learn terraform. If it helps you, great.
 
@@ -34,7 +34,7 @@ Create a config.tf file with the following content
 terraform {
   backend "s3" {
     bucket = "YOUR-S3-BUCKET-NAME"
-    key    = "PATH-TO/route53/"
+    key    = "PATH-TO/route53/route53.tfstate"
     region = "REGION-OF-BUCKET"
   }
 }
@@ -43,3 +43,5 @@ terraform {
 
 To finalise the configuration and make sure terraform will use s3 bucket for its state, run `terraform init`. you should now see a .terraform folder being created. 
 NOTE: You may need working AWS-cli installed with accesskey and secret for this user account configured. I have not tested it without this credential pre-set.
+
+Now you can start playing with cornmbank DNS!
