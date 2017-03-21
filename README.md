@@ -1,6 +1,6 @@
 # What is this?
 
-This is my terraform code to provision/config route53 for my cornmbank.com site. It's my playground to learn terraform. If it helps you, great.
+This is my terraform code to provision/config route53 for my cornmbank.com site. It's my playground to learn terraform. If it helps you, great. And yes, having this file is like doing zone transfer on my cornmbank `dig AXFR cornmbank.com`  but I don't mind as it's nothing sensitive :)
 
 For this task, i created a new user in AWS with full access to Route53 policy attached.
 
