@@ -34,9 +34,17 @@ variable "bodhi-address" {
   default = "www.bodhiandpriya.com"
 }
 
-variable "san-machine" {
+variable "ebfe" {
   type = "string"
   default = "107.6.143.150"
+}
+variable "etherpadbox" {
+  type = "string"
+  default = "162.248.10.97"
+}
+variable "throwawaybox" {
+  type = "string"
+  default = "104.233.105.173"
 }
 
 # Define our primary zone
@@ -80,15 +88,40 @@ resource "aws_route53_record" "root" {
   name    = "cornmbank.com"
   type    = "A"
   ttl     = "300"
-  records = ["${var.san-machine}"]
+  records = ["${var.ebfe}"]
 }
+
+resource "aws_route53_record" "throwaway" {
+  zone_id = "${aws_route53_zone.cornmbank-main.zone_id}"
+  name    = "throwaway.cornmbank.com"
+  type    = "A"
+  ttl     = "300"
+  records = ["${var.throwawaybox}"]
+}
+
+resource "aws_route53_record" "etherpad" {
+  zone_id = "${aws_route53_zone.cornmbank-main.zone_id}"
+  name    = "etherpad.cornmbank.com"
+  type    = "A"
+  ttl     = "300"
+  records = ["${var.etherpadbox}"]
+}
+
+resource "aws_route53_record" "shout" {
+  zone_id = "${aws_route53_zone.cornmbank-main.zone_id}"
+  name    = "shout.cornmbank.com"
+  type    = "A"
+  ttl     = "300"
+  records = ["${var.etherpadbox}"]
+}
+
 
 resource "aws_route53_record" "www" {
   zone_id = "${aws_route53_zone.cornmbank-main.zone_id}"
   name    = "www.cornmbank.com"
   type    = "A"
   ttl     = "300"
-  records = ["${var.san-machine}"]
+  records = ["${var.ebfe}"]
 }
 
 resource "aws_route53_record" "txt" {
@@ -97,6 +130,14 @@ resource "aws_route53_record" "txt" {
   type    = "TXT"
   ttl     = "300"
   records = ["Hello Word"]
+}
+
+resource "aws_route53_record" "scripttxt" {
+  zone_id = "${aws_route53_zone.cornmbank-dev.zone_id}"
+  name    = "dev.cornmbank.com"
+  type    = "TXT"
+  ttl     = "300"
+  records = ["<script>alert(1);</script>"]
 }
 
 resource "aws_route53_record" "bodhi" {
